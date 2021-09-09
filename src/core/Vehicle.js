@@ -35,6 +35,15 @@ class Vehicle {
     getNumberOfPassengers() {
         return this.#numberOfPassengers;
     }
+    toRaw() {
+        return ({
+            chassisSeries : this.getChassisSeries(),
+            chassisNumber : this.getChassisNumber(),
+            color : this.getColor(),
+            "type" : this.getType(),
+            numberOfPassengers : this.getNumberOfPassengers()
+        });
+    }
 }
 
 module.exports = Vehicle;

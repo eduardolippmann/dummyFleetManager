@@ -18,6 +18,12 @@ function createWindow () {
 function setupAppEvents() {
   ipcMain.on("InsertVehicle", function (ev, vehicleInfo) {
     controller.insertVehicle(vehicleInfo, function(err, data) {
+        if(err) {
+            ev.reply('InsertVehicleError', err);    
+        }
+        else {
+            ev.reply('InsertVehicleReply', data);    
+        }
     });
   });
   ipcMain.on("EditVehicle", function (ev, vehicleInfo) {
@@ -26,10 +32,17 @@ function setupAppEvents() {
   });
   ipcMain.on("FindVehicle", function (ev, chassisInfo) {
     controller.findVehicle(chassisInfo, function(err, data) {
+        if(err) {
+            ev.reply('FindVehicleError', err);    
+        }
+        else {
+            ev.reply('FindVehicleReply', data);
+        }
     });
   });
   ipcMain.on("ListAllVehicles", function (ev) {
     controller.listVehicles(function(err, data) {
+        ev.reply('ListAllVehiclesReply', data);
     });
   });
   ipcMain.on("DeleteVehicle", function (ev, chassisInfo) {

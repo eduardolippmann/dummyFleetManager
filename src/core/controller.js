@@ -41,7 +41,7 @@ function findVehicle(chassisInfo, cb) {
     let vehicles = readAllVehicles();
     for(var i = 0; i < vehicles.length; i++) {
         if(chassisId.isEqual(vehicles[i].getChassisId())) {
-            cb(null, vehicles[i]);
+            cb(null, vehicles[i].toRaw());
             return;
         }
     }
