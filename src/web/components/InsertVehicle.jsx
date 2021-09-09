@@ -11,8 +11,8 @@ class InsertVehicle extends React.Component {
             insertSuccess: false,
             chassisSeries: '',
             chassisNumber: '',
-            color: 'Blue',
-            type: 'Truck'
+            color: '',
+            type: ''
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -40,7 +40,6 @@ class InsertVehicle extends React.Component {
     handleInputChange(event) {
         const value = event.target.value;
         const name = event.target.name;
-
         this.setState({
             [name]: value,
             errorMsg:'',
@@ -76,6 +75,12 @@ class InsertVehicle extends React.Component {
                         Chassis Number
                     <input type="text" name="chassisNumber" onChange={this.handleInputChange} />
                     </label>
+                    <select name="type" value={this.state.type} onChange={this.handleInputChange}>
+                        {vehicleTypes.map((type)=><option value={type}>{type}</option>)}
+                    </select>
+                    <select name="color" value={this.state.color} onChange={this.handleInputChange}>
+                        {colors.map((color)=><option value={color}>{color}</option>)}
+                    </select>
                     <button disabled={insertDisabled} onClick={this.handleSubmit}>Insert</button>
                 {errorMsg}
                 {successMsg}
