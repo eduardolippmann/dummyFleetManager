@@ -24,6 +24,10 @@ class InsertVehicle extends React.Component {
         window.fleetAPI.onInsertError(((err)=>this.setState({insertSuccess:false, errorMsg:err})).bind(this));
     }
 
+    componentWillUnmount() {
+        window.fleetAPI.clearListeners();
+    }
+
     handleSubmit() {
         this.setState({errorMsg:'', insertSuccess: false});
         window.fleetAPI.insertVehicle({

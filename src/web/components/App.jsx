@@ -3,7 +3,8 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import AppHeader from './AppHeader.jsx';
 import ListVehicles from './ListVehicles.jsx';
 import InsertVehicle from './InsertVehicle.jsx';
-import FindVehicles from './FindVehicle.jsx';
+import FindVehicle from './FindVehicle.jsx';
+import DeleteVehicle from './DeleteVehicle.jsx';
 
 
 const Hello = () => {
@@ -21,7 +22,6 @@ class App extends React.Component {
     
     componentDidMount() {
         // window.fleetAPI.editVehicle({chassisSeries:"aaa", chassisNumber: 1, color:"Green", type:"Truck"});
-        // window.fleetAPI.deleteVehicle({chassisSeries:"ccc", chassisNumber: 2});
     }
 
     render() {
@@ -33,10 +33,10 @@ class App extends React.Component {
             <div style={{height:'90%', width:'100%'}}>
                 <Switch>
                     <Route path="/list" component={ListVehicles} />
-                    <Route path="/find" component={FindVehicles} />
+                    <Route path="/find" component={FindVehicle} />
                     <Route path="/insert" component={InsertVehicle} />
                     <Route path="/edit" component={Hello} />
-                    <Route path="/delete" component={Hello} />
+                    <Route path="/delete" component={DeleteVehicle} />
                 </Switch>
             </div>
         </Router>)

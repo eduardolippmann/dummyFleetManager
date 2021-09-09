@@ -1,6 +1,7 @@
 const {ipcRenderer, contextBridge} = require('electron');
 
 contextBridge.exposeInMainWorld('fleetAPI', {
+    clearListeners : () => ipcRenderer.removeAllListeners(),
     insertVehicle : (data) => ipcRenderer.send('InsertVehicle', data),
     listVehicles : (data) => ipcRenderer.send('ListAllVehicles', data),
     findVehicle : (data) => ipcRenderer.send('FindVehicle', data),
@@ -11,4 +12,6 @@ contextBridge.exposeInMainWorld('fleetAPI', {
     onInsertError : (cb) => ipcRenderer.on('InsertVehicleError', function (ev, data) {cb(data)}),
     onFindComplete : (cb) => ipcRenderer.on('FindVehicleReply', function (ev, data) {cb(data)}),
     onFindError : (cb) => ipcRenderer.on('FindVehicleError', function (ev, data) {cb(data)}),
+    onDeleteComplete : (cb) => ipcRenderer.on('DeleteVehicleReply', function (ev, data) {cb(data)}),
+    onDeleteError : (cb) => ipcRenderer.on('DeleteVehicleError', function (ev, data) {cb(data)}),
 });

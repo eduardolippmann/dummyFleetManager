@@ -172,5 +172,5 @@ function removeVehicle(chassisId, cb) {
             return;
         }
     }
-    cb('Error updating vehicle', null);
+    cb('Error deleting vehicle', null);
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class FindVehicle extends React.Component {
+class DeleteVehicle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,6 +13,7 @@ class FindVehicle extends React.Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.deleteVehicle = this.deleteVehicle.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +47,10 @@ class FindVehicle extends React.Component {
         });
     }
 
+    deleteVehicle() {
+        window.fleetAPI.deleteVehicle({chassisSeries:this.state.chassisSeries, chassisNumber: parseInt(this.state.chassisNumber)});
+    }
+
     checkInputs() {
         let notAlphaNumTest = new RegExp(/[^a-zA-Z0-9]/g);
         let notNumberTest = new RegExp(/[^0-9]/g);
@@ -63,7 +68,7 @@ class FindVehicle extends React.Component {
     render() {
         const insertDisabled = !this.checkInputs();
         const errorMsg = this.state.errorMsg ? <div>{this.state.errorMsg}</div> : '';
-        const findSuccess = this.state.findSuccess ? <div>Vehicle found: {JSON.stringify(this.vehicle)}</div> : '';
+        const deleteButton = this.state.findSuccess ? <button onClick={this.deleteVehicle}>Delete</button> : '';
         return (
             <React.Fragment>
                 <label>
@@ -76,10 +81,10 @@ class FindVehicle extends React.Component {
                 </label>
                 <button disabled={insertDisabled} onClick={this.handleSubmit}>Find</button>
                 {errorMsg}
-                {findSuccess}
+                {deleteButton}
             </React.Fragment>
         );
     }
 }
 
-export default FindVehicle;
+export default DeleteVehicle;

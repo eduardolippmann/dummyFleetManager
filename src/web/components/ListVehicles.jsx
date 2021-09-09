@@ -21,6 +21,10 @@ class ListVehicles extends React.Component {
         this.loadVehicles();
     }
 
+    componentWillUnmount() {
+        window.fleetAPI.clearListeners();
+    }
+
     render() {
         if(!this.state.dataLoaded) {
             return <div>LOADING DATA</div>
