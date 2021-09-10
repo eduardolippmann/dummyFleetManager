@@ -5,6 +5,7 @@ import ListVehicles from './ListVehicles.jsx';
 import InsertVehicle from './InsertVehicle.jsx';
 import FindVehicle from './FindVehicle.jsx';
 import DeleteVehicle from './DeleteVehicle.jsx';
+import EditVehicle from './EditVehicle.jsx';
 
 
 const Hello = () => {
@@ -19,10 +20,6 @@ class App extends React.Component {
     constructor(props) {
       super(props);
     }
-    
-    componentDidMount() {
-        // window.fleetAPI.editVehicle({chassisSeries:"aaa", chassisNumber: 1, color:"Green", type:"Truck"});
-    }
 
     render() {
         return (
@@ -35,7 +32,7 @@ class App extends React.Component {
                     <Route path="/list" component={ListVehicles} />
                     <Route path="/find" component={FindVehicle} />
                     <Route path="/insert" component={InsertVehicle} />
-                    <Route path="/edit" component={Hello} />
+                    <Route path="/edit" component={EditVehicle} />
                     <Route path="/delete" component={DeleteVehicle} />
                 </Switch>
             </div>

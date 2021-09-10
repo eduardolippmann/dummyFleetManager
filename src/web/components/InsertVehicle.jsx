@@ -11,8 +11,8 @@ class InsertVehicle extends React.Component {
             insertSuccess: false,
             chassisSeries: '',
             chassisNumber: '',
-            color: '',
-            type: ''
+            color: colors[0],
+            type: vehicleTypes[0]
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
