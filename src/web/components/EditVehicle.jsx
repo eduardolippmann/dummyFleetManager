@@ -1,4 +1,6 @@
 import React from 'react';
+import ShowVehicles from './ShowVehicles.jsx';
+
 
 const colors = ['Red', 'Blue', 'Green', 'Orange', 'Black', 'White'];
 
@@ -26,6 +28,8 @@ class EditVehicle extends React.Component {
             this.setState({findSuccess:true, color:data.color});
         }).bind(this));
         window.fleetAPI.onFindError(((err)=>this.setState({findSuccess:false, errorMsg:err})).bind(this));
+        window.fleetAPI.onEditComplete((()=>this.setState({findSuccess:false, errorMsg:''})).bind(this));
+
     }
 
     componentWillUnmount() {
@@ -91,6 +95,7 @@ class EditVehicle extends React.Component {
             </select>
             : '';
         const editButton = this.state.findSuccess ? <button onClick={this.editVehicle}>Edit</button> : '';
+        const vehicle = this.state.findSuccess ? <ShowVehicles vehicles={[this.vehicle]}/> : '';
         return (
             <React.Fragment>
                 <label>
@@ -103,6 +108,7 @@ class EditVehicle extends React.Component {
                 </label>
                 <button disabled={insertDisabled} onClick={this.handleSubmit}>Find</button>
                 {errorMsg}
+                {vehicle}
                 {selectColor}
                 {editButton}
             </React.Fragment>

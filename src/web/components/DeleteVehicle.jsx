@@ -1,4 +1,6 @@
 import React from 'react';
+import ShowVehicles from './ShowVehicles.jsx';
+
 
 class DeleteVehicle extends React.Component {
     constructor(props) {
@@ -22,6 +24,7 @@ class DeleteVehicle extends React.Component {
             this.setState({findSuccess:true});
         }).bind(this));
         window.fleetAPI.onFindError(((err)=>this.setState({findSuccess:false, errorMsg:err})).bind(this));
+        window.fleetAPI.onDeleteComplete((()=>this.setState({findSuccess:false, errorMsg:''})).bind(this));
     }
 
     componentWillUnmount() {
@@ -68,6 +71,7 @@ class DeleteVehicle extends React.Component {
     render() {
         const insertDisabled = !this.checkInputs();
         const errorMsg = this.state.errorMsg ? <div>{this.state.errorMsg}</div> : '';
+        const vehicle = this.state.findSuccess ? <ShowVehicles vehicles={[this.vehicle]}/> : '';
         const deleteButton = this.state.findSuccess ? <button onClick={this.deleteVehicle}>Delete</button> : '';
         return (
             <React.Fragment>
@@ -80,6 +84,7 @@ class DeleteVehicle extends React.Component {
                 <input type="text" name="chassisNumber" onChange={this.handleInputChange} />
                 </label>
                 <button disabled={insertDisabled} onClick={this.handleSubmit}>Find</button>
+                {vehicle}
                 {errorMsg}
                 {deleteButton}
             </React.Fragment>

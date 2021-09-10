@@ -14,4 +14,6 @@ contextBridge.exposeInMainWorld('fleetAPI', {
     onFindError : (cb) => ipcRenderer.on('FindVehicleError', function (ev, data) {cb(data)}),
     onDeleteComplete : (cb) => ipcRenderer.on('DeleteVehicleReply', function (ev, data) {cb(data)}),
     onDeleteError : (cb) => ipcRenderer.on('DeleteVehicleError', function (ev, data) {cb(data)}),
+    onEditComplete : (cb) => ipcRenderer.on('EditVehicleReply', function (ev, data) {cb(data)}),
+    onEditError : (cb) => ipcRenderer.on('EditVehicleError', function (ev, data) {cb(data)}),
 });

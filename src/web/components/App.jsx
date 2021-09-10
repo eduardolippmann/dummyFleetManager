@@ -24,10 +24,10 @@ class App extends React.Component {
     render() {
         return (
         <Router>
-            <div style={{height:'10%', width:'100%'}}>
+            <div style={{height:'15%', width:'98%'}}>
                 <AppHeader />
             </div>
-            <div style={{height:'90%', width:'100%'}}>
+            <div style={{height:'85%', width:'98%'}}>
                 <Switch>
                     <Route path="/list" component={ListVehicles} />
                     <Route path="/find" component={FindVehicle} />

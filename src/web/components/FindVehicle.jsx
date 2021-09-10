@@ -1,4 +1,5 @@
 import React from 'react';
+import ShowVehicles from './ShowVehicles.jsx';
 
 class FindVehicle extends React.Component {
     constructor(props) {
@@ -63,7 +64,7 @@ class FindVehicle extends React.Component {
     render() {
         const insertDisabled = !this.checkInputs();
         const errorMsg = this.state.errorMsg ? <div>{this.state.errorMsg}</div> : '';
-        const findSuccess = this.state.findSuccess ? <div>Vehicle found: {JSON.stringify(this.vehicle)}</div> : '';
+        const findSuccess = this.state.findSuccess ? <ShowVehicles vehicles={[this.vehicle]} /> : '';
         return (
             <React.Fragment>
                 <label>

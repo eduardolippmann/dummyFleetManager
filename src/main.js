@@ -28,6 +28,12 @@ function setupAppEvents() {
     });
     ipcMain.on("EditVehicle", function (ev, vehicleInfo) {
         controller.editVehicle(vehicleInfo, function (err, data) {
+            if (err) {
+                ev.reply('EditVehicleError', err);
+            }
+            else {
+                ev.reply('EditVehicleReply', data);
+            }
         });
     });
     ipcMain.on("FindVehicle", function (ev, chassisInfo) {

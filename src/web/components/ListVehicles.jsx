@@ -1,4 +1,5 @@
 import React from 'react';
+import ShowVehicles from './ShowVehicles.jsx';
 
 class ListVehicles extends React.Component {
     constructor(props) {
@@ -31,9 +32,7 @@ class ListVehicles extends React.Component {
         }
         const vehicles = this.vehicles;
         return (
-            <div>
-                {JSON.stringify(vehicles)}
-            </div>
+            <ShowVehicles vehicles={vehicles}/>
         );
     }
 }
